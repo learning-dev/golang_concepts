@@ -1,0 +1,68 @@
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    
+    var numberOfStudents int;
+
+    var rollNo int;
+    var score int;
+    var studentData map[int]int = make(map[int]int)
+    var choice int;
+
+    fmt.Println("-----Menu-----")
+    fmt.Println("1. Add Student Records")
+    fmt.Println("2. Delete Student Record")
+    fmt.Println("3. Display Student Records")
+    fmt.Println("4. View a Student Record")
+
+
+    fmt.Printf("Please enter your choice:")
+    fmt.Scan(&choice)
+
+   switch choice { 
+
+    case 1:
+
+       fmt.Println("\nEnter the number of students you want to add:")
+       fmt.Scan(&numberOfStudents)
+   
+       fmt.Println("Start Entering the Roll number and scores of the students:")
+   
+       for i := 0; i < numberOfStudents; i++ {
+            fmt.Printf("Roll no:")
+            fmt.Scan(&rollNo)
+            fmt.Printf("Score:")
+            fmt.Scanf("%d", &score)
+            studentData[rollNo] = score
+       }
+   
+   
+       for i, k := range studentData{
+           fmt.Printf("Rollno :%d Score: %d\n", i, k)
+       }
+
+    case 2:
+        fmt.Println("Enter the roll number to delete the record:")
+        fmt.Scan(&rollNo)
+
+        _, ok := studentData[rollNo]
+        
+        if ok == true{
+            delete(studentData, rollNo)
+        } else{
+            fmt.Println("No record exists with roll number entered.")
+        }
+
+    default:
+        fmt.Println("Invalid Option!")
+
+   }
+
+
+   
+}
+
